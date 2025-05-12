@@ -5,14 +5,16 @@ namespace series_analyzer
 {
     class Program()
     {
+        // the series list
         List<int> series = new List<int>();
-        // set "series" to the return of "split string".ToList() with the "args" as default
         void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Series Analyzer");
 
-            //if "series" List is empty jump to "EnterList"
+            // set "series" to the return of "split string".ToList() with the "args" as default
             series.AddRange(SplitString(args));
+
+            //if "series" List is empty jump to "EnterList"
             if (series.Count() > 0)
                 {
                 MenuManager();
@@ -59,26 +61,30 @@ namespace series_analyzer
             Console.WriteLine("Enter Series (put a space between the numbers: ");
         }
 
-        // sorted list
-        //sort and return list
+        // sort list
+        void List<int> SortList(List<int> unsorted)
+        {
+            //sort and return list
+            return unsorted.Sort();
+        }
 
-        // max func
-        // return<int> max item in list
+            // max func
+            // return<int> max item in list
 
-        // min func
-        // return<int> min item in list
+            // min func
+            // return<int> min item in list
 
-        // average func
-        // return<int> average of value of items in list
+            // average func
+            // return<int> average of value of items in list
 
-        // sum of list
-        // return<int> sum of value of items in list
+            // sum of list
+            // return<int> sum of value of items in list
 
-        // split string
-        // validate items (str,positive,at lest 3 items) and then add to "series" List 
-        // if not invalid jump to "enter list"
+            // split string
+            // validate items (str,positive,at lest 3 items) and then add to "series" List 
+            // if not invalid jump to "enter list"
 
-        List<int> SplitString(string[] series_input)
+            List<int> SplitString(string[] series_input)
         {
             List<int> ints = new List<int>();
             foreach (string num in series_input)
