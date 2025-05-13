@@ -161,21 +161,35 @@ namespace series_analyzer
         // split string
         // validate items (str,positive,at lest 3 items) and then add to "series" List 
         // if not invalid jump to "enter list"
-
-        List<int> SplitString(string[] series_input)
+        List<int> SplitString(string series_input)
         {
+            if (series_input.Length == 0)
+                {
+                throw new ArgumentException("series cannot be empty");
+            }
+            string[] splited = series_input.Split();
+            if (splited.Length > 3)
+            {
+                throw new ArgumentException("Series cannot be less then 3 items");
+            }
             List<int> ints = new List<int>();
-            foreach (string num in series_input)
+            foreach (string num in splited)
             {
                 if (int.TryParse(num, out int converted_number))
                 {
                     if (converted_number > 0)
                     { 
                     ints.Add(converted_number);
-                    continue;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Series cannot contain Negative Numbers");
+                    }
                 }
+                else
+                {
+                    throw new ArgumentException("Series cannot contain Strings");
                 }
-                    return new List<int>();
             }
             return ints;
         }
