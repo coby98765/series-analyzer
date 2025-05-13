@@ -78,7 +78,7 @@ namespace series_analyzer
 
 
         // max func
-        // return<int> max item in list
+        // print max item in list
         static void FindMax(List<int> seriesList)
         {
             int max = seriesList[0];
@@ -94,7 +94,19 @@ namespace series_analyzer
 
 
         // min func
-        // return<int> min item in list
+        // print min item in list
+        static void FindMin(List<int> seriesList)
+        {
+            int min = seriesList[0];
+            foreach (int i in seriesList)
+            {
+                if (i > min)
+                {
+                    min = i;
+                }
+            }
+            Console.WriteLine($"The Minimum Number in the list: {min}");
+        }
 
         // average func
         // return<int> average of value of items in list
