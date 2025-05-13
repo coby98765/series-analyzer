@@ -10,20 +10,21 @@
             series = SplitString(string.Join(" ", args));
 
             Console.WriteLine("Welcome to the Series Analyzer");
+            Console.WriteLine($"Your Series is: ");
+            PrintList(series);
 
             while (true)
             {
                 //if "series" List is empty jump to "EnterList"
                 if (series.Count() > 0)
                 {
-                    Console.WriteLine($"Your Series is: ");
-                    PrintList(series);
                     series = MenuManager(series);
                 }
-                //else
-                //{
-                //    EnterList();
-                //}
+                else
+                {
+                    series = SplitString(EnterList());
+                }
+                continue;
             }
         }
 
@@ -32,40 +33,96 @@
         {
             // print menu options
             Console.WriteLine("Menu: \n" +
-                "a.Input a Series.\n" +
-                "b.Display the series in the order it was entered.\n" +
-                "c.Display the series in the reversed order it was entered.\n" +
-                "d.Display the series in sorted order.\n" +
-                "e.Display the Max value of the series.\n" +
-                "f.Display the Min value of the series.\n" +
-                "g.Display the Average of the series.\n" +
-                "h.Display the Number of elements in the series.\n" +
-                "i.Display the Sum of the series.\n" +
-                "j.Exit.\n" +
+                "a. Input a Series.\n" +
+                "b. Display the series in the order it was entered.\n" +
+                "c. Display the series in the reversed order it was entered.\n" +
+                "d. Display the series in sorted order.\n" +
+                "e. Display the Max value of the series.\n" +
+                "f. Display the Min value of the series.\n" +
+                "g. Display the Average of the series.\n" +
+                "h. Display the Number of elements in the series.\n" +
+                "i. Display the Sum of the series.\n" +
+                "j. Exit.\n" +
                 "Enter your Choice");
             // user input menu option
             string UserMenuChoice = Console.ReadLine();
-            series = MenuSwitcher(UserMenuChoice);
+            series = MenuSwitcher(UserMenuChoice.ToLower(), series);
             return series;
         }
 
-        static List<int> MenuSwitcher(string MenuChoice)
+        static List<int> MenuSwitcher(string MenuChoice, List<int> series)
         {
             // switch case for menu inputted option 
             // validate with "default" case option 
-            //switch (user_input)
-            //{
-            //    case "0":
-            //        { Console.WriteLine("abc");
-            //            break;
-            //        }
-            //    default:
-            //        {
-            //            Console.WriteLine("invalid choice, try again");
-            //            return MenuManager();
-            //        }
-            //}
-            return new List<int>();
+            switch (MenuChoice)
+            {
+                case "a":
+                    {
+                        Console.WriteLine("Input a Series.");
+                        series = SplitString(EnterList());
+                        break;
+                    }
+                case "b":
+                    {
+                        Console.WriteLine("The order it was entered.");
+                        PrintList(series);
+                        break;
+                    }
+                case "c":
+                    {
+                        Console.WriteLine("The reversed order it was entered.");
+                        PrintList(ReverseList(series));
+                        break;
+                    }
+                case "d":
+                    {
+                        Console.WriteLine("In sorted order.");
+                        PrintList(SortList(series));
+                        break;
+                    }
+                case "e":
+                    {
+                        Console.WriteLine("The Max value of the series.");
+                        Console.WriteLine(FindMax(series));
+                        break;
+                    }
+                case "f":
+                    {
+                        Console.WriteLine("The Min value of the series.");
+                        Console.WriteLine(FindMin(series));
+                        break;
+                    }
+                case "g":
+                    {
+                        Console.WriteLine("The Average of the series.");
+                        Console.WriteLine(FindAverage(series));
+                        break;
+                    }
+                case "h":
+                    {
+                        Console.WriteLine("The Number of elements in the series.");
+                        Console.WriteLine(ListLen(series));
+                        break;
+                    }
+                case "i":
+                    {
+                        Console.WriteLine("The Sum of the series.");
+                        Console.WriteLine(ListSum(series));
+                        break;
+                    }
+                case "j":
+                    {
+                        Console.WriteLine("Exiting Program...");
+                        System.Environment.Exit(1);
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("Invalid choice, try again");
+                        return new List<int>();
+                    }
+            }
+            return series;
         }
 
         //  a. enter list
@@ -82,7 +139,6 @@
         {
             foreach (int i in seriesList)
             {
-                //sort and return list
                 Console.Write(i + ",");
             }
             Console.WriteLine();
@@ -122,7 +178,6 @@
                     max = i;
                 }
             }
-            // Console.WriteLine($"The Maximum Number in the list: {max}");
             return max;
         }
 
@@ -138,7 +193,6 @@
                     min = i;
                 }
             }
-            //Console.WriteLine($"The Minimum Number in the list: {min}");
             return min;
         }
 
@@ -158,7 +212,7 @@
             int count = 0;
             foreach (int i in seriesList)
             {
-                count += 1;
+                count ++;
             }
             return count;
         }
