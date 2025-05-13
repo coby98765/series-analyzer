@@ -54,9 +54,11 @@ namespace series_analyzer
 
         //  a. enter list
         //enter string send to "split string"
-        void EnterList()
+        static string EnterList()
         {
-            Console.WriteLine("Enter Series (put a space between the numbers: ");
+            Console.WriteLine("Enter Series (put a space between the numbers): ");
+            string input = Console.ReadLine();
+            return input;
         }
 
         // b. PrintList
