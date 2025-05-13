@@ -110,13 +110,27 @@ namespace series_analyzer
             return min;
         }
 
+        // list len
+        // returns <int> amount of item in list
+        static int ListLen(List<int> seriesList)
+        {
+            int count = 0;
+            foreach (int i in seriesList)
+            {
+                count += 1;
+            }
+            //Console.WriteLine($"The Minimum Number in the list: {min}");
+            return count;
+        }
+
+
         // average func
         // return<int> average of value of items in list
         static float FindAverage(List<int> seriesList)
         {
             int sum = ListSum(seriesList);
-            
-            return sum/seriesList.Count();
+            int len = ListLen(seriesList);
+            return sum / len;
         }
 
         // sum of list
