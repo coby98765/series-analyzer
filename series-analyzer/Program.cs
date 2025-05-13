@@ -54,7 +54,7 @@
         {
             // switch case for menu inputted option 
             // validate with "default" case option 
-            Console.WriteLine();
+            Console.WriteLine("\n");
             switch (MenuChoice)
             {
                 case "a":
@@ -159,10 +159,16 @@
 
 
         // d. sort list
-        static List<int> SortList(List<int> unsorted)
+        static List<int> SortList(List<int> seriesList)
         {
-            List<int> sorted = new List<int>(unsorted);
-            sorted.Sort();
+            List<int> UnSorted = new List<int>(seriesList);
+            List<int> sorted = new List<int>();
+            while(ListLen(UnSorted) > 0)
+            {
+                int min = FindMin(UnSorted);
+                sorted.Add(min);
+                UnSorted.Remove(min);
+            }
             return sorted;
         }
 
