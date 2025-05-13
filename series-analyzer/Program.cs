@@ -112,6 +112,12 @@ namespace series_analyzer
 
         // average func
         // return<int> average of value of items in list
+        static float FindAverage(List<int> seriesList)
+        {
+            int sum = ListSum(seriesList);
+            
+            return sum/seriesList.Count();
+        }
 
         // sum of list
         // return<int> sum of value of items in list
