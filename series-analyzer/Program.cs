@@ -50,7 +50,16 @@ namespace series_analyzer
 
             return user_input;
         }
-        // PrintList
+        
+
+        //  a. enter list
+        //enter string send to "split string"
+        void EnterList()
+        {
+            Console.WriteLine("Enter Series (put a space between the numbers: ");
+        }
+
+        // b. PrintList
         void PrintList(List<int> sereisList)
         {
             foreach (int i in sereisList)
@@ -61,14 +70,11 @@ namespace series_analyzer
             Console.WriteLine();
         }
 
-        // enter list
-        //enter string send to "split string"
-        void EnterList()
-        {
-            Console.WriteLine("Enter Series (put a space between the numbers: ");
-        }
+        //c. reverse list
 
-        // sort list
+
+
+        // d. sort list
         void SortList(List<int> unsorted)
         {
             List<int> sorted = new List<int>(unsorted);
@@ -77,7 +83,7 @@ namespace series_analyzer
         }
 
 
-        // max func
+        // e. max func
         // returns <int> max item in list
         static int FindMax(List<int> seriesList)
         {
@@ -94,7 +100,7 @@ namespace series_analyzer
         }
 
 
-        // min func
+        // f. min func
         // returns <int> min item in list
         static int FindMin(List<int> seriesList)
         {
@@ -110,7 +116,15 @@ namespace series_analyzer
             return min;
         }
 
-        // list len
+        // g. average func
+        // return<int> average of value of items in list
+        static float FindAverage(List<int> seriesList)
+        {
+            int sum = ListSum(seriesList);
+            int len = ListLen(seriesList);
+            return sum / len;
+        }
+        //  h. list len
         // returns <int> amount of item in list
         static int ListLen(List<int> seriesList)
         {
@@ -119,21 +133,11 @@ namespace series_analyzer
             {
                 count += 1;
             }
-            //Console.WriteLine($"The Minimum Number in the list: {min}");
             return count;
         }
 
 
-        // average func
-        // return<int> average of value of items in list
-        static float FindAverage(List<int> seriesList)
-        {
-            int sum = ListSum(seriesList);
-            int len = ListLen(seriesList);
-            return sum / len;
-        }
-
-        // sum of list
+        // i. sum of list
         // return<int> sum of value of items in list
         static int ListSum(List<int> seriesList)
         {
