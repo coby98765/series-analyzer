@@ -1,39 +1,56 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Globalization;
-
-namespace series_analyzer
+﻿namespace series_analyzer
 {
-    class Program()
+    class Program
     {
-        
-        void Main(string[] args)
+        static void Main(string[] args)
         {
             // the series list
             List<int> series = new List<int>();
+            //enter the args to series list
+            series = SplitString(string.Join(" ", args));
+
             Console.WriteLine("Welcome to the Series Analyzer");
 
-            // set "series" to the return of "split string".ToList() with the "args" as default
-            //series.AddRange(SplitString(args));
-
-            //if "series" List is empty jump to "EnterList"
-            if (series.Count() > 0)
-                {
-                MenuManager();
-            }
-            else
+            while (true)
             {
-                EnterList();
+                //if "series" List is empty jump to "EnterList"
+                if (series.Count() > 0)
+                {
+                    Console.WriteLine($"Your Series is: ");
+                    PrintList(series);
+                    series = MenuManager(series);
+                }
+                //else
+                //{
+                //    EnterList();
+                //}
             }
         }
 
         //run menu
-        string MenuManager() {
+        static List<int> MenuManager(List<int> series)
+        {
             // print menu options
-            Console.WriteLine("Menu\n1) ");
+            Console.WriteLine("Menu: \n" +
+                "a.Input a Series.\n" +
+                "b.Display the series in the order it was entered.\n" +
+                "c.Display the series in the reversed order it was entered.\n" +
+                "d.Display the series in sorted order.\n" +
+                "e.Display the Max value of the series.\n" +
+                "f.Display the Min value of the series.\n" +
+                "g.Display the Average of the series.\n" +
+                "h.Display the Number of elements in the series.\n" +
+                "i.Display the Sum of the series.\n" +
+                "j.Exit.\n" +
+                "Enter your Choice");
             // user input menu option
-            string user_input = Console.ReadLine();
+            string UserMenuChoice = Console.ReadLine();
+            series = MenuSwitcher(UserMenuChoice);
+            return series;
+        }
+
+        static List<int> MenuSwitcher(string MenuChoice)
+        {
             // switch case for menu inputted option 
             // validate with "default" case option 
             //switch (user_input)
@@ -48,10 +65,8 @@ namespace series_analyzer
             //            return MenuManager();
             //        }
             //}
-
-            return user_input;
+            return new List<int>();
         }
-        
 
         //  a. enter list
         //enter string send to "split string"
@@ -164,15 +179,16 @@ namespace series_analyzer
         // split string
         // validate items (str,positive,at lest 3 items) and then add to "series" List 
         // if not invalid jump to "enter list"
-        List<int> SplitString(string series_input)
+        static List<int> SplitString(string series_input)
         {
             if (series_input.Length == 0)
-                {
+            {
                 Console.WriteLine("series cannot be empty");
                 return new List<int>();
             }
             string[] splited = series_input.Split();
-            if (splited.Length > 3)
+
+            if (splited.Length < 3)
             {
                 Console.WriteLine("Series cannot be less then 3 items");
                 return new List<int>();
@@ -183,8 +199,8 @@ namespace series_analyzer
                 if (int.TryParse(num, out int converted_number))
                 {
                     if (converted_number > 0)
-                    { 
-                    ints.Add(converted_number);
+                    {
+                        ints.Add(converted_number);
                     }
                     else
                     {
