@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 
 namespace series_analyzer
 {
@@ -48,10 +50,15 @@ namespace series_analyzer
 
             return user_input;
         }
-        // show list
-        void PrintList()
+        // PrintList
+        void PrintList(List<int> sereisList)
         {
-            Console.WriteLine(series);
+            foreach (int i in sereisList)
+            {
+                //sort and return list
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
         }
 
         // enter list
@@ -62,14 +69,17 @@ namespace series_analyzer
         }
 
         // sort list
-        void List<int> SortList(List<int> unsorted)
+        void SortList(List<int> unsorted)
         {
-            //sort and return list
-            return unsorted.Sort();
+            List<int> sorted = new List<int>(unsorted);
+            sorted.Sort();
+            PrintList(sorted);
         }
+
 
             // max func
             // return<int> max item in list
+
 
             // min func
             // return<int> min item in list
