@@ -10,7 +10,7 @@
             series = SplitString(string.Join(" ", args));
 
             Console.WriteLine("Welcome to the Series Analyzer");
-            Console.WriteLine($"Your Series is: ");
+            Console.WriteLine($"\nYour Series is: ");
             PrintList(series);
 
             while (true)
@@ -32,7 +32,7 @@
         static List<int> MenuManager(List<int> series)
         {
             // print menu options
-            Console.WriteLine("Menu: \n" +
+            Console.WriteLine("\n\nMenu: \n" +
                 "a. Input a Series.\n" +
                 "b. Display the series in the order it was entered.\n" +
                 "c. Display the series in the reversed order it was entered.\n" +
@@ -54,6 +54,7 @@
         {
             // switch case for menu inputted option 
             // validate with "default" case option 
+            Console.WriteLine();
             switch (MenuChoice)
             {
                 case "a":
@@ -64,49 +65,49 @@
                     }
                 case "b":
                     {
-                        Console.WriteLine("The order it was entered.");
+                        Console.Write("The order it was entered: ");
                         PrintList(series);
                         break;
                     }
                 case "c":
                     {
-                        Console.WriteLine("The reversed order it was entered.");
+                        Console.Write("In Reversed order: ");
                         PrintList(ReverseList(series));
                         break;
                     }
                 case "d":
                     {
-                        Console.WriteLine("In sorted order.");
+                        Console.Write("In Sorted order: ");
                         PrintList(SortList(series));
                         break;
                     }
                 case "e":
                     {
-                        Console.WriteLine("The Max value of the series.");
+                        Console.Write("The Max value of the series: ");
                         Console.WriteLine(FindMax(series));
                         break;
                     }
                 case "f":
                     {
-                        Console.WriteLine("The Min value of the series.");
+                        Console.Write("The Min value of the series: ");
                         Console.WriteLine(FindMin(series));
                         break;
                     }
                 case "g":
                     {
-                        Console.WriteLine("The Average of the series.");
+                        Console.Write("The Average of the series: ");
                         Console.WriteLine(FindAverage(series));
                         break;
                     }
                 case "h":
                     {
-                        Console.WriteLine("The Number of elements in the series.");
+                        Console.Write("The Number of elements in the series: ");
                         Console.WriteLine(ListLen(series));
                         break;
                     }
                 case "i":
                     {
-                        Console.WriteLine("The Sum of the series.");
+                        Console.Write("The Sum of the series: ");
                         Console.WriteLine(ListSum(series));
                         break;
                     }
@@ -119,7 +120,7 @@
                 default:
                     {
                         Console.WriteLine("Invalid choice, try again");
-                        return new List<int>();
+                        return series;
                     }
             }
             return series;
@@ -188,7 +189,7 @@
             int min = seriesList[0];
             foreach (int i in seriesList)
             {
-                if (i > min)
+                if (i < min)
                 {
                     min = i;
                 }
@@ -202,7 +203,7 @@
         {
             int sum = ListSum(seriesList);
             int len = ListLen(seriesList);
-            return sum / len;
+            return (float)sum / len;
         }
 
         //  h. list len
@@ -264,7 +265,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Series cannot contain Strings");
+                    Console.WriteLine("Series can only contain Numbers");
                     return new List<int>();
                 }
             }
