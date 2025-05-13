@@ -7,14 +7,15 @@ namespace series_analyzer
 {
     class Program()
     {
-        // the series list
-        List<int> series = new List<int>();
+        
         void Main(string[] args)
         {
+            // the series list
+            List<int> series = new List<int>();
             Console.WriteLine("Welcome to the Series Analyzer");
 
             // set "series" to the return of "split string".ToList() with the "args" as default
-            series.AddRange(SplitString(args));
+            //series.AddRange(SplitString(args));
 
             //if "series" List is empty jump to "EnterList"
             if (series.Count() > 0)
@@ -62,9 +63,9 @@ namespace series_analyzer
         }
 
         // b. PrintList
-        void PrintList(List<int> sereisList)
+        static void PrintList(List<int> seriesList)
         {
-            foreach (int i in sereisList)
+            foreach (int i in seriesList)
             {
                 //sort and return list
                 Console.Write(i + ",");
@@ -167,12 +168,14 @@ namespace series_analyzer
         {
             if (series_input.Length == 0)
                 {
-                throw new ArgumentException("series cannot be empty");
+                Console.WriteLine("series cannot be empty");
+                return new List<int>();
             }
             string[] splited = series_input.Split();
             if (splited.Length > 3)
             {
-                throw new ArgumentException("Series cannot be less then 3 items");
+                Console.WriteLine("Series cannot be less then 3 items");
+                return new List<int>();
             }
             List<int> ints = new List<int>();
             foreach (string num in splited)
@@ -185,12 +188,14 @@ namespace series_analyzer
                     }
                     else
                     {
-                        throw new ArgumentException("Series cannot contain Negative Numbers");
+                        Console.WriteLine("Series cannot contain Negative Numbers");
+                        return new List<int>();
                     }
                 }
                 else
                 {
-                    throw new ArgumentException("Series cannot contain Strings");
+                    Console.WriteLine("Series cannot contain Strings");
+                    return new List<int>();
                 }
             }
             return ints;
