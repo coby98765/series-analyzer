@@ -121,6 +121,15 @@ namespace series_analyzer
 
         // sum of list
         // return<int> sum of value of items in list
+        static int ListSum(List<int> seriesList)
+        {
+            int total = 0;
+            foreach (int i in seriesList)
+            {
+                total += i;
+            }
+            return total;
+        }
 
         // split string
         // validate items (str,positive,at lest 3 items) and then add to "series" List 
