@@ -71,15 +71,24 @@ namespace series_analyzer
         }
 
         //c. reverse list
-
+        static List<int> ReverseList(List<int> seriesList)
+        {
+            List<int> reversed = new List<int>();
+            int len = ListLen(seriesList);
+            for (int i = (len - 1); i >= 0; i--)
+            {
+                reversed.Add(seriesList[i]);
+            }
+            return reversed;
+        }
 
 
         // d. sort list
-        void SortList(List<int> unsorted)
+        static List<int> SortList(List<int> unsorted)
         {
             List<int> sorted = new List<int>(unsorted);
             sorted.Sort();
-            PrintList(sorted);
+            return sorted;
         }
 
 
@@ -98,7 +107,6 @@ namespace series_analyzer
             // Console.WriteLine($"The Maximum Number in the list: {max}");
             return max;
         }
-
 
         // f. min func
         // returns <int> min item in list
@@ -124,6 +132,7 @@ namespace series_analyzer
             int len = ListLen(seriesList);
             return sum / len;
         }
+
         //  h. list len
         // returns <int> amount of item in list
         static int ListLen(List<int> seriesList)
